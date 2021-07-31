@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.jquery_jsp.mapper.BoardMapper">
+
+    <!--  Select All  -->
+    <select id="getAll" resultType="com.example.jquery_jsp.domain.Board">
+        SELECT * FROM boardTbl;
+    </select>
+
+    <!--  insert   -->
+    <insert id="createBoard" parameterType="com.example.jquery_jsp.domain.Board">
+        INSERT INTO boardTbl (title, content, completed, createdAt)
+        VALUES
+            (#{title},#{content},#{completed}, now());
+    </insert>
+</mapper>
