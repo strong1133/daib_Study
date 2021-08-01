@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -16,6 +17,7 @@ public class Board extends TimeStamped {
     private Long id;
     private String title;
     private String content;
+    @Column(nullable = true)
     private boolean completed;
 
 }

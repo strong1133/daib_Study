@@ -12,6 +12,6 @@
     <insert id="createBoard" parameterType="com.example.jquery_jsp.domain.Board">
         INSERT INTO boardTbl (title, content, completed, createdAt)
         VALUES
-            (#{title},#{content},#{completed}, now());
+            (#{title},#{content}, false, now());
     </insert>
 </mapper>

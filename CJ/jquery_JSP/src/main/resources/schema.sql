@@ -4,9 +4,9 @@ CREATE TABLE boardTbl(
     title varchar(30) not null,
     content varchar(30) not null,
     completed tinyint(1) not null,
-    createdAt DATE not null,
+    createdAt timestamp not null,
     primary key (id)
 );
 
 insert into boardTbl(title, content, completed, createdAt)
-values('제목1','내용1', false, '2021-07-21' );
+values('제목1','내용1', false, now());
