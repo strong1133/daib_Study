@@ -41,7 +41,7 @@
         let fileNum = 0;
         let content_files = [];
 
-        function fileCheck(e){
+        const fileCheck =(e)=>{
             // 올라온 파일 담기
             let files = e.target.files;
             let fileArr = Array.prototype.slice.call(files);
@@ -68,7 +68,7 @@
 
         }
 
-        function addHtml(fileNum, name){
+        const addHtml=(fileNum, name)=>{
             let tempHtml = `<div id='file-\${fileNum}' onclick='fileDelete(file-\${fileNum})'>
                                 <font style='font-size:12px'>  \${name}  </font>
                             <div/>`
