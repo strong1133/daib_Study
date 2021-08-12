@@ -13,8 +13,9 @@
 <body>
     <div class = "container">
         <h2>파일 업로드</h2>
-        <form name="dataForm" id="dataForm" onsubmit="return registerAction()">
+        <form name="dataForm" id="dataForm" onsubmit="return registerAction()" enctype="multipart/form-data" >
             <button id="id-upload" type="button" style="border: 1px solid #ddd; outline: none;"> 파일 추가</button>
+            <button id="post-file" type="button" style="border: 1px solid #ddd; outline: none;"> 파일 저장</button>
             <input id="input_file" multiple="multiple" type="file" style="display: none"/>
             <div class="data_file_txt" id="data_file_txt" style="margin: 40px">
                 <span>첨부 파일</span>
@@ -25,15 +26,21 @@
         </form>
     </div>
     <script>
+        let fileArr = {}
         $(document).ready(function (){
             $("#input_file").on("change", fileCheck);
         });
 
         $(function (){
+
             $("#id-upload").click(function (e){
                 e.preventDefault();
                 $('#input_file').click();
             });
+
+            $("#post-file").click(function (e){
+                postFile(fileArr);
+            })
         })
 
         let fileCount = 0;
@@ -44,7 +51,7 @@
         const fileCheck =(e)=>{
             // 올라온 파일 담기
             let files = e.target.files;
-            let fileArr = Array.prototype.slice.call(files);
+            fileArr = Array.prototype.slice.call(files);
 
             // 총 파일 갯수 제한
             if(fileCount + fileArr.length > totalCount){
@@ -58,21 +65,49 @@
                 let reader = new FileReader();
                 reader.onload = function (e){
                     content_files.push(f);
-                    $('#fileChange').append(addHtml(fileNum, f.name));
+                    $('#fileChange').append(addHtml(fileNum, f.name, f.size));
                     fileNum ++;
                 };
                 reader.readAsDataURL(f);
             });
-            console.log(content_files);
+            console.log(fileArr);
             $("#input_file").val("")
 
         }
 
-        const addHtml=(fileNum, name)=>{
+        const addHtml=(fileNum, name, size)=>{
             let tempHtml = `<div id='file-\${fileNum}' onclick='fileDelete(file-\${fileNum})'>
-                                <font style='font-size:12px'>  \${name}  </font>
+                                <font style='font-size:12px'>  \${name}  size:  \${size}  </font>
                             <div/>`
             return tempHtml;
+        }
+
+        const postFile = (fileArr)=> {
+            console.log("==== postFile 진입 ====")
+
+            let formDataArr = new FormData();
+            formDataArr.append("key", "value");
+            for(i of fileArr){
+                console.log(i)
+                formDataArr.append("files",i)
+            }
+            console.log(formDataArr);
+
+            $.ajax({
+                url:"/fupload",
+                method:'POST',
+                data : formDataArr,
+                processData: false,
+                contentType: false,
+                success : function(data) {
+                    console.log(data)
+                },
+                error : function(request, status, error) {
+                    alert("code : " + request.status + "\n" + "message : " + request.responseText + "\n" + "error : " + error);
+                }
+
+            })
+
         }
 
     </script>
