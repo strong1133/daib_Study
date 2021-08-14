@@ -94,7 +94,7 @@
             console.log(formDataArr);
 
             $.ajax({
-                url:"/fupload",
+                url:"/file",
                 method:'POST',
                 data : formDataArr,
                 processData: false,

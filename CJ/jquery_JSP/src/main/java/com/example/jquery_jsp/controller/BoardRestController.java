@@ -25,12 +25,4 @@ public class BoardRestController {
         boardService.createBoard(board);
         return "작성완료";
     }
-
-    //File Upload
-    @PostMapping("/fupload")
-    public String fileUploader(@RequestParam("files") MultipartFile multipartFile){
-        System.out.println("--------------------");
-        System.out.println(multipartFile.getOriginalFilename());
-        return "연결 성공";
-    }
 }

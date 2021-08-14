@@ -1,5 +1,5 @@
 $(document).ready(function(){
-   alert('자스')
+
 });
 
 function writeBoard(){
