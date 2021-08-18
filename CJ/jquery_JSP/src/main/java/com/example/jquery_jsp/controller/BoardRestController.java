@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Array;
 import java.lang.reflect.Parameter;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -29,9 +33,12 @@ public class BoardRestController {
     }
 
     @PostMapping("/form")
-    public String formData (MultipartHttpServletRequest formData){
+    public String formData (HttpServletRequest formData){
+        System.out.println(formData);
         System.out.println(formData.getParameter("name"));
-        System.out.println(formData.getParameter("cpt"));
+        System.out.println(Arrays.toString(formData.getParameterMap().get("chk")));
+
+
         return "작성완료";
     }
 }
