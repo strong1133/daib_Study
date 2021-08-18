@@ -29,6 +29,17 @@
             <button onclick="writeBoard()" >제출하기</button>
         </table>
     </div>
+    <hr/>
+    <form action="post" id="formBox">
+        <div class="wrap">
+            <input type="text" name="name" id="name" value=""/>
+            <input type="checkbox" name="chk" id="chk_01" value="A"/>
+            <input type="checkbox" name="chk" id="chk_02" value="B"/>
+            <input type="checkbox" name="chk" id="chk_03" value="C"/>
+        </div>
+    </form>
+    <button id="chkBtn" onclick="chkBtnClick()">체크버튼</button>
+    <hr/>
     <table border="1">
         <thead>
             <tr>
@@ -49,4 +60,10 @@
         </tbody>
     </table>
 </body>
+<style>
+    .wrap{
+        display: flex;
+        flex-direction: column;
+    }
+</style>
 </html>

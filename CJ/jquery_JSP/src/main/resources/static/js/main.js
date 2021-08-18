@@ -26,3 +26,21 @@ function writeBoard(){
    });
 
 }
+
+function chkBtnClick(){
+
+    let form = $("#formBox")[0];
+    let formData = new FormData(form);
+    console.log(formData)
+
+    $.ajax({
+            processData: false,
+            contentType: false,
+            data : formData,
+            url :'/form',
+            type : 'post',
+            success: function(response){
+                alert('작성 성공');
+            }
+    });
+}
